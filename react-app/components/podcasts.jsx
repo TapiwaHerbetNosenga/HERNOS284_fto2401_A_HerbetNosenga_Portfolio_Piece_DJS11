@@ -5,14 +5,16 @@ import { sortPodcasts } from "../utils/podcastUtils.mjs";
 const Podcasts = () => {
   const [podcasts, setPodcasts] = useState([]);
   const [sortOrder, setSortOrder] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
+      setLoading(true);
       const response = await fetch("https://podcast-api.netlify.app");
       const data = await response.json();
       const sortedData = sortPodcasts(data, "ascending");
       setPodcasts(sortedData);
-      setSortOrder("ascending");
+      setLoading(false);
     };
 
     loadData();
@@ -23,8 +25,8 @@ const Podcasts = () => {
     setPodcasts(sortedPodcasts);
   }, [sortOrder]);
 
-  if (!podcasts) {
-    return <div>Loading...</div>;
+  if (loading) {
+    return <h1 >Loading...</h1>;
   }
 
   return (

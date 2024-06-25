@@ -4,13 +4,12 @@ import { Link, useParams, useLocation } from "react-router-dom";
 import EpisodeCard from "../components/episodeCard";
 import { addOrUpdateEpisode } from "../utils/localStorageUtils.mjs";
 
-export default function Previews() {
+export default function Shows() {
   const handleSeasonChange = (event) => {
     const seasonNumber = parseInt(event.target.value, 10);
     const selected = seasons.find((season) => season.season === seasonNumber);
 
     setSelectedSeason(selected);
-    console.log(selected.image);
   };
 
   const { id } = useParams();
@@ -30,8 +29,10 @@ export default function Previews() {
   const [podcast, setPodcasts] = useState(null);
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState(null);
+ // const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+   // setLoading(true);
     fetch(`https://podcast-api.netlify.app/id/${id}`)
       .then((response) => response.json())
       .then((data) => {
@@ -43,15 +44,14 @@ export default function Previews() {
       .catch((error) => console.error(error));
   }, [id]);
 
-  if (!podcast) {
-    return <div className="head4">Loading...</div>;
-  }
 
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     const date = new Date(dateString);
     return date.toLocaleDateString(undefined, options);
   };
+
+  
 
   const handleFavorite = (episode) => {
     const favoritePodcast = {
@@ -62,6 +62,11 @@ export default function Previews() {
 
     addOrUpdateEpisode(favoritePodcast, selectedSeason, episode);
   };
+
+
+ /* if (loading) {
+    return <h4>Loading...</h4>;
+  }*/
 
   return (
     <div>
