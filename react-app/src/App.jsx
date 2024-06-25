@@ -1,16 +1,16 @@
 
-import { useState, useEffect } from 'react';
+
 import './App.css'
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 //import "bootstrap/dist/css/bootstrap.min.css"
 
 
 import Layout from '../components/layout';
 import Home from '../pages/home';
-import Previews from '../pages/preview';
 import Shows from '../pages/shows';
 
 import FavoriteEpisodes from '../pages/favoriteEpisodes';
+import Podcasts from '../components/podcasts';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="preview" element={<Previews />} />
+          <Route path="preview" element={<Podcasts />} />
           <Route path="shows/:id" element={<Shows />} />
           <Route path="favorite-episodes" element={<FavoriteEpisodes />} />
           
