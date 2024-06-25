@@ -10,7 +10,7 @@
 }
 
 .head1{
-  color: whitesmoke;
+  color: grey;
 }
 
 footer{
@@ -59,14 +59,14 @@ margin: 0;
 
 .head3{
   color: gray;
-  
+
 }
 #pageFooter {
   grid-area: footer;
 }
 #mainArticle { 
   grid-area: main;  
-  background-color: #161616;    
+    
   }
 #mainNav { 
   grid-area: nav; 
@@ -216,8 +216,7 @@ ul{
     grid-area: footer;
   }
   #mainArticle { 
-    grid-area: main; 
-    background-color: #161616;     
+    grid-area: main;    
     }
   #mainNav { 
     grid-area: nav; 

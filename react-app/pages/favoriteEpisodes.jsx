@@ -3,7 +3,6 @@ import { getShowsData } from "../utils/localStorageUtils.mjs";
 import { sortPodcasts } from "../utils/podcastUtils.mjs";
 import EpisodeCard from "../components/episodeCard";
 
-
 export default function FavoriteEpisodes() {
   const [podcasts, setPodcasts] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState(null);
@@ -12,38 +11,39 @@ export default function FavoriteEpisodes() {
   const [sortOrder, setSortOrder] = useState("ascending");
 
   useEffect(() => {
-    const loadData = () => {
-      const favoritePodcasts = getShowsData();
-      setPodcasts(favoritePodcasts);
-      setSeasons(favoritePodcasts.seasons || []);
-      console.log(seasons);
-    };
-
-    loadData();
+    // Load initial data when component mounts
+    const favoritePodcasts = getShowsData();
+    setPodcasts(favoritePodcasts);
   }, []);
 
   const handleSeasonChange = (event) => {
     const seasonNumber = parseInt(event.target.value, 10);
     const selected = seasons.find((season) => season.season === seasonNumber);
-
     setSelectedSeason(selected);
   };
 
   const handlePodcastChange = (event) => {
-    const podcastNumber = event.target.value;
-    const selected = podcasts.find((podcast) => podcast.id === podcastNumber);
+    const podcastId = event.target.value;
+    // Find the selected podcast object from the array
+    const selected = podcasts.find((podcast) => podcast.id === podcastId);
 
-    setSelectedPodcast(selected);
-    setSeasons(selected.seasons);
+    setSelectedPodcast(selected); // Update selectedPodcast state
+    setSeasons(selected.seasons || []); // Update seasons directly here
   };
 
   const handleSortOrderChange = (event) => {
     setSortOrder(event.target.value);
   };
 
+  const removeFavorite = (episode) => {
+    // Implement remove logic here
+    console.log("Removing episode", episode);
+  };
+
   if (podcasts.length === 0) {
     return <h5>No podcasts</h5>;
   }
+
   return (
     <div>
       <h1 className="head1">Favorites</h1>
@@ -61,14 +61,13 @@ export default function FavoriteEpisodes() {
         <option value=" " disabled>
           Select a season
         </option>
-        {seasons &&
-          seasons.map((season) => (
-            <option key={season.season} value={season.season}>
-              {season.title}
-            </option>
-          ))}
+        {seasons.map((season) => (
+          <option key={season.season} value={season.season}>
+            {season.title}
+          </option>
+        ))}
       </select>
-      <select value={sortOrder} onChange={handleSortOrderChange}> {/* New select for sort order */}
+      <select value={sortOrder} onChange={handleSortOrderChange}>
         <option value="ascending">Sort Ascending</option>
         <option value="descending">Sort Descending</option>
       </select>
@@ -81,7 +80,7 @@ export default function FavoriteEpisodes() {
                   episode={episode}
                   seasonImage={selectedSeason.image}
                 />
-                <button onClick={() => handleFavorite(episode)}>
+                <button onClick={() => removeFavorite(episode)}>
                   Remove from favorites.
                 </button>
               </div>

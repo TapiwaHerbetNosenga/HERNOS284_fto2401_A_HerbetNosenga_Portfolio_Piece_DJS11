@@ -44,7 +44,7 @@ export default function Previews() {
   }, [id]);
 
   if (!podcast) {
-    return <div>Loading...</div>;
+    return <div className="head4">Loading...</div>;
   }
 
   const formatDate = (dateString) => {
