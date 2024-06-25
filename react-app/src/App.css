@@ -195,7 +195,6 @@ ul{
 
 @media only screen and (max-width: 600px) {
   .site-wrapper {
-    background-color: d;
     min-height: 100vh;
     display:grid;
     grid-template-areas: 
