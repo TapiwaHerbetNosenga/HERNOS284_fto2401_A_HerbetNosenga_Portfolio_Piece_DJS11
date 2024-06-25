@@ -11,7 +11,7 @@ export default function FavoriteEpisodes() {
   const [sortOrder, setSortOrder] = useState("ascending");
 
   useEffect(() => {
-    // Load initial data when component mounts
+   
     const favoritePodcasts = getShowsData();
     setPodcasts(favoritePodcasts);
   }, []);
@@ -24,11 +24,11 @@ export default function FavoriteEpisodes() {
 
   const handlePodcastChange = (event) => {
     const podcastId = event.target.value;
-    // Find the selected podcast object from the array
+   
     const selected = podcasts.find((podcast) => podcast.id === podcastId);
 
-    setSelectedPodcast(selected); // Update selectedPodcast state
-    setSeasons(selected.seasons || []); // Update seasons directly here
+    setSelectedPodcast(selected);
+    setSeasons(selected.seasons || []); 
   };
 
   const handleSortOrderChange = (event) => {
@@ -36,7 +36,7 @@ export default function FavoriteEpisodes() {
   };
 
   const removeFavorite = (episode) => {
-    // Implement remove logic here
+   
     console.log("Removing episode", episode);
   };
 
@@ -44,33 +44,28 @@ export default function FavoriteEpisodes() {
     return <h5>No podcasts</h5>;
   }
 
-  return (
+return (
     <div>
       <h1 className="head1">Favorites</h1>
-      <select defaultValue="" onChange={handlePodcastChange}>
-        <option value="" disabled>
-          Select a podcast
-        </option>
-        {podcasts.map((podcast) => (
-          <option key={podcast.id} value={podcast.id}>
-            {podcast.title}
-          </option>
-        ))}
-      </select>
-      <select defaultValue=" " onChange={handleSeasonChange}>
-        <option value=" " disabled>
-          Select a season
-        </option>
-        {seasons.map((season) => (
-          <option key={season.season} value={season.season}>
-            {season.title}
-          </option>
-        ))}
-      </select>
-      <select value={sortOrder} onChange={handleSortOrderChange}>
-        <option value="ascending">Sort Ascending</option>
-        <option value="descending">Sort Descending</option>
-      </select>
+      <div className="d-flex align-items-center">
+        <select className="me-2" defaultValue="" onChange={handlePodcastChange}>
+          <option value="" disabled>Select a podcast</option>
+          {podcasts.map((podcast) => (
+            <option key={podcast.id} value={podcast.id}>{podcast.title}</option>
+          ))}
+        </select>
+        <select className="me-2" defaultValue=" " onChange={handleSeasonChange}>
+          <option value=" " disabled>Select a season</option>
+          {seasons.map((season) => (
+            <option key={season.season} value={season.season}>{season.title}</option>
+          ))}
+        </select>
+        <select className="me-auto" value={sortOrder} onChange={handleSortOrderChange}>
+          <option value="ascending">Sort Ascending</option>
+          <option value="descending">Sort Descending</option>
+        </select>
+        <button onClick={() => localStorage.clear()}>Clear local storage</button>
+      </div>
       {selectedSeason && (
         <div className="mb-4">
           <ul className="list-group">
