@@ -7,7 +7,6 @@ export default function Home() {
         Welcome to the podcast app, here you can find and listen to many
         different podcasts.
       </h1>
-      <button onClick={() => localStorage.clear()}>Clear local storage</button>
     </div>
   );
 }
