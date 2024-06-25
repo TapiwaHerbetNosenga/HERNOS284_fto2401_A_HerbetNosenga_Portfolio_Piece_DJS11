@@ -1,6 +1,7 @@
+
 import { useState, useEffect } from "react";
 
-import { Link, useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import EpisodeCard from "../components/episodeCard";
 import { addOrUpdateEpisode } from "../utils/localStorageUtils.mjs";
 
@@ -13,6 +14,8 @@ export default function Shows() {
   };
 
   const { id } = useParams();
+  const { genre } = useLocation().state;
+  
 
   const GENRE_TITLES = {
     1: "Personal Growth",
@@ -29,17 +32,16 @@ export default function Shows() {
   const [podcast, setPodcasts] = useState(null);
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState(null);
- // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-   // setLoading(true);
+    setLoading(true);
     fetch(`https://podcast-api.netlify.app/id/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setPodcasts(data);
         setSeasons(data.seasons);
-
-        console.log(data);
+        setLoading(false);
       })
       .catch((error) => console.error(error));
   }, [id]);
@@ -51,8 +53,6 @@ export default function Shows() {
     return date.toLocaleDateString(undefined, options);
   };
 
-  
-
   const handleFavorite = (episode) => {
     const favoritePodcast = {
       title: podcast.title,
@@ -63,12 +63,13 @@ export default function Shows() {
     addOrUpdateEpisode(favoritePodcast, selectedSeason, episode);
   };
 
+  const genreTitles = genre.map(g => GENRE_TITLES[g]).join(', ');
 
- /* if (loading) {
-    return <h4>Loading...</h4>;
-  }*/
+  if(loading){
+    return <h1>Loading...</h1>
+  }
 
-  return (
+  return  (
     <div>
       <div key={podcast.id} className="podcast-show">
         <img
@@ -80,8 +81,8 @@ export default function Shows() {
         <h2>{podcast.title}</h2>
         <p>{podcast.description}</p>
         <p>Seasons: {podcast.seasons.length}</p>
+        <p>Genres: {genreTitles}</p>
         <p>Updated: {formatDate(podcast.updated)}</p>
-        <p>Genres: {podcast.genres.join()}</p>
         <select defaultValue=" " onChange={handleSeasonChange}>
           <option value=" " disabled>
             Select a season
