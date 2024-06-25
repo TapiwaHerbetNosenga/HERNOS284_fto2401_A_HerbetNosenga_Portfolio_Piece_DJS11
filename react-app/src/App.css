@@ -5,6 +5,14 @@
   text-align: center;
 }
 
+.border1{
+  margin: 3vw;
+}
+
+.head1{
+  color: whitesmoke;
+}
+
 footer{
   background-color: #161616;
   color: #aaaaaa;
@@ -26,7 +34,12 @@ header {
  
 }
 
+.head4{
+color: whitesmoke;
+}
+
 .site-wrapper {
+  background-color: d;
   min-height: 100vh;
   display:grid;
   grid-template-areas: 
@@ -41,12 +54,19 @@ margin: 0;
 
 #pageHeader {
   grid-area: header;
+  
+}
+
+.head3{
+  color: gray;
+  
 }
 #pageFooter {
   grid-area: footer;
 }
 #mainArticle { 
-  grid-area: main;      
+  grid-area: main;  
+  background-color: #161616;    
   }
 #mainNav { 
   grid-area: nav; 
@@ -57,7 +77,7 @@ aside {
 
 }
 
-nav > ul{
+aside > nav > ul{
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -70,6 +90,7 @@ nav > ul{
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
+  color: red;
 }
 
 .linkTo{
@@ -91,17 +112,17 @@ nav > ul{
   
 }
 
+
 .podcast-card > h2{
   font-size: 2vw;
 }
-
 .podcast-show {
   font-size: 2vw;
 }
 
 .pod-title{
   font-size: 2vw;
-  color: whitesmoke;
+  color: grey;
 }
 
 .podcast-img{
@@ -168,4 +189,76 @@ nav > ul{
 ul{
   list-style: none;
    
+}
+
+@media only screen and (max-width: 600px) {
+  .site-wrapper {
+    background-color: d;
+    min-height: 100vh;
+    display:grid;
+    grid-template-areas: 
+    "header"
+    "nav"
+    "main"
+    "footer";
+  grid-template-rows: 60px 60px 1fr 60px;
+  grid-template-columns: 1fr;
+  height: 100vh;
+  margin: 0;
+  }
+
+  #pageHeader {
+    grid-area: header;
+    
+  }
+  
+  #pageFooter {
+    grid-area: footer;
+  }
+  #mainArticle { 
+    grid-area: main; 
+    background-color: #161616;     
+    }
+  #mainNav { 
+    grid-area: nav; 
+    }
+
+    aside > nav > ul{
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+    }
+
+    .pod-title{
+      font-size: 3.5vw;
+      color: grey;
+      display: none;
+    }
+
+    .podcast-img{
+      width: 20vw;
+      height: 20vw;
+      z-index: 0;
+      border-radius: 10%;
+    }
+
+    .podcast-card{
+      display:flex;
+      border-radius: 10%;
+      width: 25vw;
+      height: 25vw;
+      flex-wrap:wrap;
+      margin: 2vw;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .podcast-card > h2{
+     display: none;
+    }
+
+    
 }

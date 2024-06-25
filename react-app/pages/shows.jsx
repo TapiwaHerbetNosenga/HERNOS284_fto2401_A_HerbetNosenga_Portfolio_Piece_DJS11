@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import { Link, useParams, useLocation } from "react-router-dom";
 import EpisodeCard from "../components/episodeCard";
+import { addOrUpdateEpisode } from "../utils/localStorageUtils.mjs";
 
 export default function Previews() {
   const handleSeasonChange = (event) => {
@@ -52,6 +53,16 @@ export default function Previews() {
     return date.toLocaleDateString(undefined, options);
   };
 
+  const handleFavorite = (episode) => {
+    const favoritePodcast = {
+      title: podcast.title,
+      id: podcast.id,
+      description: podcast.description,
+    };
+
+    addOrUpdateEpisode(favoritePodcast, selectedSeason, episode);
+  };
+
   return (
     <div>
       <div key={podcast.id} className="podcast-show">
@@ -81,11 +92,16 @@ export default function Previews() {
           <div className="mb-4">
             <ul className="list-group">
               {selectedSeason.episodes.map((episode) => (
-                <EpisodeCard
-                  key={episode.episode}
-                  episode={episode}
-                  seasonImage={selectedSeason.image}
-                />
+                <div key={episode.episode}>
+                  <EpisodeCard
+                   
+                    episode={episode}
+                    seasonImage={selectedSeason.image}
+                  />
+                  <button onClick={()=>handleFavorite(episode)}>
+                    Add to favorites.
+                  </button>
+                </div>
               ))}
             </ul>
           </div>
