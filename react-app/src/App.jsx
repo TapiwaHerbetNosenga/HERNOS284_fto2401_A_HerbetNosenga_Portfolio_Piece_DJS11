@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 import Layout from '../components/layout';
 import Home from '../pages/home';
-import Shows from '../pages/shows';
+import Shows from '../pages/podcastView';
 
 import FavoriteEpisodes from '../pages/favoriteEpisodes';
 import Podcasts from '../components/podcasts';
