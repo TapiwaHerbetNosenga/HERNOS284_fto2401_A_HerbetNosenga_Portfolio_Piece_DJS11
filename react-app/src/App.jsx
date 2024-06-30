@@ -10,7 +10,8 @@ import Home from '../pages/home';
 import Shows from '../pages/podcastView';
 
 import FavoriteEpisodes from '../pages/favoriteEpisodes';
-import Podcasts from '../components/podcasts';
+import Podcasts from '../pages/previewsPage';
+
 
 function App() {
   return (
