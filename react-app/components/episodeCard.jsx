@@ -23,6 +23,7 @@ const EpisodeCard = ({ episode, seasonImage }) => {
   return (
     <div className="card w-100 mb-4">
       <div className="card-body">
+        <img src={seasonImage} id="season-img" />
         <h5 className="card-title">{episode.title}</h5>
         <p className="card-text">{episode.description}</p>
         <img src={heartLogo} className="logo" alt="Heart icon" />

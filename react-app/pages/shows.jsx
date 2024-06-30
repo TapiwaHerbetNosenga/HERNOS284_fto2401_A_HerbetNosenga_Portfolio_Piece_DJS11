@@ -96,6 +96,7 @@ export default function Shows() {
 
         {selectedSeason && (
           <div className="mb-4">
+             <h5 className="mb-5 mt-2"> Episodes:{selectedSeason.episodes.length}</h5>
             <ul className="list-group">
               {selectedSeason.episodes.map((episode) => (
                 <div key={episode.episode}>
