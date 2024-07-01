@@ -4,6 +4,10 @@ import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import EpisodeCard from "../components/episodeCard";
 import { addOrUpdateEpisode } from "../utils/localStorageUtils.mjs";
+import PlayButton from "../components/playBut";
+import { useAudio } from "../components/audioContext";
+
+
 
 export default function Shows() {
   const handleSeasonChange = (event) => {
@@ -33,6 +37,17 @@ export default function Shows() {
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { setCurrentAudio } = useAudio(); 
+  
+
+  const handlePlay = (episode) => {
+    
+    setCurrentAudio((prev) => ({
+      url: episode.file,
+      key: prev.key + 1
+    }));
+  };
+
 
   useEffect(() => {
     setLoading(true);
@@ -105,6 +120,7 @@ export default function Shows() {
                     episode={episode}
                     seasonImage={selectedSeason.image}
                   />
+                  <PlayButton onClick={()=>handlePlay(episode)} />
                   <button onClick={()=>handleFavorite(episode)}>
                     Add to favorites.
                   </button>
