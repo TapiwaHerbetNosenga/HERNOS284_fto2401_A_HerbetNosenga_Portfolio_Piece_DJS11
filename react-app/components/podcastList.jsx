@@ -16,6 +16,7 @@ const PodcastList = ({ podcasts }) => (
             className="podcast-img"
           />
           <h2 className="pod-title">{podcast.title}</h2>
+          <h2>bruh</h2>
         </Link>
       </div>
     ))}
