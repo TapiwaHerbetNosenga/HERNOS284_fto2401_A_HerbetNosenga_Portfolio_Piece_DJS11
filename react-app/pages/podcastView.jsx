@@ -49,6 +49,8 @@ export default function Shows() {
   };
 
 
+
+
   useEffect(() => {
     setLoading(true);
     fetch(`https://podcast-api.netlify.app/id/${id}`)
