@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <header id="pageHeader">
-      <h3 className='text-xm font-bold'>Welcome to My Podcast Platform</h3>
-      <Link to="/"><h3 className='head3'>Home</h3></Link>
+      <h3 className=' font-bold xl: text-4xl'>Podcastz</h3>
+      
     </header>
   );
 }

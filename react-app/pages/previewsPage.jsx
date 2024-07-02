@@ -42,18 +42,20 @@ const Podcasts = () => {
 
 
   if (loading) {
-    return <h1 >Loading...</h1>;
+    return <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>;
   }
 
   return (
     <div>
-      <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+      <select className="border-2 border-black m-2" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
         <option value="ascending">Sort Ascending</option>
         <option value="descending">Sort Descending</option>
       </select>
-      <select value={filteredGenre} onChange={(e) => setGenre(e.target.value)}>
+      <select className="border-2 border-black m-2" value={filteredGenre} onChange={(e) => setGenre(e.target.value)}>
         <option disabled value="Empty">Select Genre</option>
-        <option value="">None</option>
+        <option value="">Sort Genre(None)</option>
         <option value="1">Personal Growth</option>
         <option value="2">Investigative Journalism</option>
         <option value="3">History</option>
@@ -69,14 +71,6 @@ const Podcasts = () => {
   );
 };
 
-/*  1: "Personal Growth",
-    2: "Investigative Journalism",
-    3: "History",
-    4: "Comedy",
-    5: "Entertainment",
-    6: "Business",
-    7: "Fiction",
-    8: "News",
-    9: "Kids and Family",*/
+
 
 export default Podcasts;

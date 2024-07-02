@@ -1,17 +1,3 @@
-/*const addOrUpdateEpisode = (show, season, episode) => {
-  const showsDataJSON = localStorage.getItem("showsData");
-  let showsData = showsDataJSON ? JSON.parse(showsDataJSON) : [];
-
-  let newShow = showsData.find((s) => s.id === show.id);
-  if (!newShow) {
-    newShow = {
-      id: show.id,
-      title: show.title, 
-      description: show.description, 
-      seasons: [],
-    };
-    showsData.push(newShow);
-  }*/
 
     const addOrUpdateEpisode = (show, season, episode) => {
       const showsDataJSON = localStorage.getItem("showsData");
@@ -22,7 +8,7 @@
         newShow = {
           id: show.id,
           title: show.title, 
-          description: show.description, 
+          description: show.description,
           seasons: [],
         };
         showsData.push(newShow);
@@ -33,6 +19,7 @@
         newSeason = {
           season: season.season,
           title: season.title,
+          image: season.image,
           episodes: [],
         };
         newShow.seasons.push(newSeason);

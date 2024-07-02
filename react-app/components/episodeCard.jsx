@@ -1,36 +1,21 @@
-import React, { useState } from "react";
-import heartLogo from "/heart.svg"
+
 import "bootstrap/dist/css/bootstrap.min.css"
 
 const EpisodeCard = ({ episode, seasonImage }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const togglePlay = () => {
-    const audio = document.getElementById(`audio-${episode.title}`);
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
+ 
 
   // Use episode image if available, otherwise use season image
-  const displayImage = episode.seasonPicture || seasonImage;
+  const displayImage = seasonImage;
 
-  
+  console.log('Display Image:', displayImage);
+
 
   return (
     <div className="card w-100 mb-4">
       <div className="card-body">
-        <img src={seasonImage} id="season-img" />
-        <h5 className="card-title">{episode.title}</h5>
-        <p className="card-text">{episode.description}</p>
-        <img src={heartLogo} className="logo" alt="Heart icon" />
-        <audio id={`audio-${episode.title}`} controls style={{ width: "100%" }}>
-          <source src={episode.file} type="audio/mp3" />
-          Your browser does not support the audio tag.
-        </audio>
+        <img className="rounded-md h-60 w-60"src={displayImage} id="season-img" />
+        <h5 className="  xl:text-4xl font-bold mt-2 mb-3">{episode.title}</h5>
+        <p className=" text-gray-600 xl:text-xl font-semibold  mb-5">{episode.description}</p>
       </div>
     </div>
   );

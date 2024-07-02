@@ -83,7 +83,9 @@ export default function Shows() {
   const genreTitles = genre.map(g => GENRE_TITLES[g]).join(', ');
 
   if(loading){
-    return <h1>Loading...</h1>
+    return <div className="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
   }
 
   return  (
@@ -92,14 +94,15 @@ export default function Shows() {
         <img
           src={podcast.image}
           alt={podcast.title}
-          width="100vw"
-          height="100vw"
+          width="20%"
+          height="auto"
+          className="rounded-md"
         />
-        <h2>{podcast.title}</h2>
-        <p>{podcast.description}</p>
-        <p>Seasons: {podcast.seasons.length}</p>
-        <p>Genres: {genreTitles}</p>
-        <p>Updated: {formatDate(podcast.updated)}</p>
+        <h2 className="xl:text-5xl font-bold mt-2">{podcast.title}</h2>
+        <p className="xl:text-4xl font-semibold mt-2">Seasons: {podcast.seasons.length}</p>
+        <p  className="xl:text-4xl font-semibold mt-2">Genres: {genreTitles}</p>
+        <p  className="xl:text-4xl font-semibold mt-2">Updated: {formatDate(podcast.updated)}</p>
+        <p className="text-gray-600 p-4">{podcast.description}</p>
         <select defaultValue=" " onChange={handleSeasonChange}>
           <option value=" " disabled>
             Select a season
@@ -113,7 +116,7 @@ export default function Shows() {
 
         {selectedSeason && (
           <div className="mb-4">
-             <h5 className="mb-5 mt-2"> Episodes:{selectedSeason.episodes.length}</h5>
+             <h5 className="xl:text-4xl font-semibold mt-2 mb-5"> Episodes:{selectedSeason.episodes.length}</h5>
             <ul className="list-group">
               {selectedSeason.episodes.map((episode) => (
                 <div key={episode.episode}>
@@ -122,10 +125,12 @@ export default function Shows() {
                     episode={episode}
                     seasonImage={selectedSeason.image}
                   />
+                  <div className="buttons">
                   <PlayButton onClick={()=>handlePlay(episode)} />
-                  <button onClick={()=>handleFavorite(episode)}>
+                  <button className="fav-button ml-2" onClick={()=>handleFavorite(episode)}>
                     Add to favorites.
                   </button>
+                  </div>
                 </div>
               ))}
             </ul>

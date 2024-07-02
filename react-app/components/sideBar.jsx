@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import homeLogo from "/home.svg";
-import libraryLogo from "/library.svg";
-import heartLogo from "/heart.svg"
+import { RiHome2Line } from "react-icons/ri";
+import { VscLibrary } from "react-icons/vsc";
+import { FaRegHeart } from "react-icons/fa";
+
+
 
 const Sidebar = () => {
   return (
@@ -12,24 +14,24 @@ const Sidebar = () => {
           <li>
             <Link to="/">
               <div className="linkTo">
-                <img src={homeLogo} className="logo" alt="Home icon" />
-                <h4 className="head4">Home</h4>
+                <RiHome2Line size={26} color="whitesmoke" />
+                <h4 className=" head4 xl:text-3xl font-bold sm: ml-2 ">Home</h4>
               </div>
             </Link>
           </li>
           <li>
             <Link to="/preview">
               <div className="linkTo">
-                <img src={libraryLogo} className="logo" alt="Library icon" />
-                <h4 className="head4">Library</h4>
+              <VscLibrary size={26} color='whitesmoke'/>
+                <h4 className=" head4 xl:text-3xl font-bold  sm: ml-2">Library</h4>
               </div>
             </Link>
           </li>
           <li>
-          <Link to="/favorite-episodes">
+            <Link to="/favorite-episodes">
               <div className="linkTo">
-              <img src={heartLogo} className="logo" alt="Heart icon" />
-                <h4 className="head4">Favourites</h4>
+              <FaRegHeart size={26} color='whitesmoke' />
+                <h4 className="head4 xl:text-3xl font-bold  sm: ml-2">Favourites</h4>
               </div>
             </Link>
           </li>
