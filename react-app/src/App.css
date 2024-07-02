@@ -50,7 +50,7 @@ color: whitesmoke;
 
 
 .site-wrapper {
-  background-color: d;
+  
   min-height: 100vh;
   display:grid;
   grid-template-areas: 
@@ -61,7 +61,7 @@ grid-template-rows: 60px 1fr 60px;
 grid-template-columns: 20vw 80vw;
 height: 100vh;
 margin: 0;
-padding-bottom: 120px;
+
 }
 
 #pageHeader {
@@ -87,7 +87,7 @@ padding-bottom: 120px;
 
 aside {
   background-color: grey;
-
+height:100%;
 }
 
 aside > nav > ul{
@@ -114,10 +114,11 @@ aside > nav > ul{
 
 .podcast-card{
   display:flex;
+  flex-direction: column;
   border-radius: 10%;
   width: 15vw;
   height: 15vw;
-  flex-wrap:inherit;
+  flex-wrap: inherit;
   margin: 2vw;
   align-items: center;
   justify-content: center;
@@ -136,6 +137,8 @@ aside > nav > ul{
 .pod-title{
   font-size: 2vw;
   color: grey;
+  max-width: 12vw;
+
 }
 
 .podcast-img{

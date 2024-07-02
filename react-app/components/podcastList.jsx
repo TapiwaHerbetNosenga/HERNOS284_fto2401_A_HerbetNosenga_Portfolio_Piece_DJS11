@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const PodcastList = ({ podcasts }) => (
   <div className="podcast-list">
     {podcasts.map((podcast) => (
-      <div key={podcast.id} className="podcast-card">
+      <div key={podcast.id} className="podcast-card flex flex-col items-center justify-center border rounded-lg p-4 m-2">
         <Link
           to={`/shows/${podcast.id}`}
           state={{
@@ -13,10 +13,10 @@ const PodcastList = ({ podcasts }) => (
           <img
             src={podcast.image}
             alt={podcast.title}
-            className="podcast-img"
+            className="podcast-img  mb-4"
           />
-          <h2 className="pod-title">{podcast.title}</h2>
-          <h2>bruh</h2>
+          <h2 className="pod-title   truncate text-center text-lg font-bold">{podcast.title}</h2>
+          <h2 text-xm>Seasons: {podcast.seasons}</h2>
         </Link>
       </div>
     ))}
